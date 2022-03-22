@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Content
+from .models import Content, Comment
 
 
 class ContentAdmin(admin.ModelAdmin):
@@ -9,3 +9,4 @@ class ContentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Content, ContentAdmin)
+admin.site.register(Comment)

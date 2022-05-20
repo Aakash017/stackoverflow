@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% block content %}
+{%  for user in users %}
+<br>
+<div class="container-fluid">
+    <div class="depname">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="/media/{{user.pic}}" alt="Trulli" width="200" height="200">
+            </div>
+            <div class="col-sm-4">
+                <h4> Name : {{user.name}} </h4>
+                <h4>Email : {{user.email}}</h4>
+                <h4> Active Since : {{user.date_joined|date:"j F, Y" }}</h4>
+                <h4>Score : {{user.score}}</h4>
+            </div>
+            <div class="col-sm-4">
+                <h4>Contribution </h4>
+                <ol>
+                {% for article in user.articles %}
+                    <li><a href="{% url 'articles:articles_detail' pk=article.pk %}">{{ article.title }}</a></li>
+                {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock content %}

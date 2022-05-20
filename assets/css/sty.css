@@ -1,0 +1,124 @@
+.top-bar{
+
+background-color:#f4f4f4;
+display:block;
+
+}
+.header-area{
+padding: 20px 0px;
+
+
+
+
+}
+.top-bar a{
+color:#222;
+}
+
+.sticky-footer{
+position:relative;
+	bottom:0;
+	width:100%;
+	height:100%;
+	background-color:#f4f4f4;
+	margin-top:20px;
+}
+
+
+.signupform label{
+
+width:120px;
+
+}
+
+.middle{
+
+
+min-height:500px;
+background-color:#f4f4f4;
+}
+
+
+.dashboard{
+
+background-color:#607d8b5e;
+height:500px;
+font-size:large;
+padding:10px;
+}
+
+.sidemenu {list-style-type:none;
+padding:0}
+.sidemenu a{
+color:black;
+text-decoration:none;
+padding:10px;
+border:1px solid black;
+margin-bottom:10px;
+display:block;
+text-align:center;
+
+}
+.sidemenu a:hover{
+color:white;
+
+}
+.depname{
+padding:2px;
+border:1px solid;
+text-align:center;
+min-height:150px;
+}
+
+.box{
+border-radius:10px;
+background-color:white;
+border:2px solid;
+text-align:center;
+font-size:24px;
+margin-left:30px;
+margin-top:30px;
+padding:10px;
+
+}
+.title{
+border-radius:10px;
+background-color:gray;
+border:2px solid;
+text-align:center;
+font-size:24px;
+margin-left:30px;
+margin-top:30px;
+padding:10px;
+}
+
+
+.myDiv {
+text-align:center;
+min-height:150px;
+}
+
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 5px;
+  cursor: pointer;
+}
+
+.img {
+  border-radius: 50%;
+  width:50px
+}
+
+
+
+
+
+

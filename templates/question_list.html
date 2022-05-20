@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+{% block content %}
+{%  for question in questions %}
+<br>
+<div class="container-fluid">
+    <div class="depname">
+        <div>
+
+            <a class="text-info card-title responsive-font-size h5"
+            href="{% url 'articles:question_detail' pk=question.pk %}">
+            {{ question.title }}</a>
+
+        <hr>
+        {% if question.body|wordcount <= 30 %}
+        <p class="card-text">{{ question.body }}</p>
+        {% else %}
+            {{ question.body|truncatewords:30 }}
+            <a href="{% url 'articles:question_detail' pk=question.pk %}" class="card-link">Read More</a>
+        {% endif %}
+    </div>
+        <div>By: {{ question.author }}
+                    - {{ question.created_at|date:"j F, Y" }}</div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock content %}

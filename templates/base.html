@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <link type="text/css" href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link type="text/css" href="/assets/css/sty.css" rel="stylesheet"/>
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+  height: 100%;
+  }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+<div class="top-bar">
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-12">
+                <h2 style="text-align:center;">
+                    <a href="/">Pasarpolis Stackoverflow</a>
+                </h2>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-default m">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/articles">ARTICLES</a></li>
+                <li><a href="/articles/questions_list">QUESTIONS</a></li>
+                <li><a href="/users/">Top Users</a></li>
+                {% if request.session.user_email %}
+                <li style="margin-left:450px"><a href="/logout">LOGOUT</a></li>
+                 <li><img src="{{request.session.user_profile_pic}}" alt="Avatar" width="50" height="50"></li>
+                {% else %}
+                <li style="margin-left:500px"><a href="/login">LOGIN</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- The form -->
+    <form class="example" action="/articles/search/" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+    <div style="margin: 20px"></div>
+
+    <div class="row">
+        <div class = "container-fluid">
+        <div class="column middle">
+            <h1>A private platform building the definitive collection of coding questions & answers</h1>
+            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec odio eget dolor tristique blandit
+                ut ut massa. Proin a porttitor velit. Fusce id posuere mauris. Morbi eget posuere magna. Etiam auctor
+                ante vitae fringilla laoreet. Quisque pharetra id metus quis aliquam. Donec sollicitudin sem eu lorem
+                tincidunt consectetur. Nunc pulvinar congue urna sit amet ultrices. Proin dignissim aliquet metus, eget
+                scelerisque augue ultricies sed. Sed vel est quis lorem ultrices rutrum. Aliquam sed sollicitudin massa,
+                sed cursus nibh. Vestibulum ac odio imperdiet, feugiat leo eu, finibus nibh.
+
+                Donec auctor purus eget quam porttitor lobortis. Phasellus iaculis sit amet tortor eu feugiat. Aenean
+                vitae nunc tincidunt quam pharetra convallis. Nullam sodales ornare blandit. Vestibulum a pulvinar ante.
+                Suspendisse commodo elit eu est ultricies, non aliquet tellus rhoncus. Vivamus maximus lacus non erat
+                dictum, sit amet tempor lacus tincidunt.
+            </h4>
+            <button onclick="alert('Thanks for Asking')">Create Article</button>
+
+        </div>
+            <div ></div>
+        <div class="column middle">
+            <h1>A private collaboration & knowledge sharing SaaS platform for Pasarpolis </h1>
+            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec odio eget dolor tristique blandit
+                ut ut massa. Proin a porttitor velit. Fusce id posuere mauris. Morbi eget posuere magna. Etiam auctor
+                ante vitae fringilla laoreet. Quisque pharetra id metus quis aliquam. Donec sollicitudin sem eu lorem
+                tincidunt consectetur. Nunc pulvinar congue urna sit amet ultrices. Proin dignissim aliquet metus, eget
+                scelerisque augue ultricies sed. Sed vel est quis lorem ultrices rutrum. Aliquam sed sollicitudin massa,
+                sed cursus nibh. Vestibulum ac odio imperdiet, feugiat leo eu, finibus nibh.
+
+                Donec auctor purus eget quam porttitor lobortis. Phasellus iaculis sit amet tortor eu feugiat. Aenean
+                vitae nunc tincidunt quam pharetra convallis. Nullam sodales ornare blandit. Vestibulum a pulvinar ante.
+                Suspendisse commodo elit eu est ultricies, non aliquet tellus rhoncus. Vivamus maximus lacus non erat
+                dictum, sit amet tempor lacus tincidunt.
+            </h4>
+            <button onclick="alert('Thanks for Asking')">Ask Question</button>
+
+        </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
+
+
+<div class="container-fluid">
+<footer class="sticky-footer">
+    <div class="row">
+        <div class="col-sm-4">
+            <h4>ABOUT PASARPOLIS</h4>
+            <p style="font-size:12px">Established in 2015, PasarPolis is Southeast Asia’s largest Insurance Technology
+                (insurtech) platform. PasarPolis’ mission is to redefine insurance so that it can be accessed more
+                easily, quickly, and on target by utilizing the latest technology. PasarPolis’ technology ensures a
+                seamless consumer experience from product selection to claims. After over six years, PasarPolis has
+                become one of the insurtech industry leaders in Indonesia with a focus on affordable insurance products.
+                PasarPolis has also invoked national pride after it started operations in Thailand and Vietnam.</p>
+        </div>
+        <div class="col-sm-4">
+            <h4>INFORMATION</h4>
+            <ul class="text-small others-list">
+                <li><a class="footer__link" href="https://pasarpolis.io/blogs">Blog</a>
+                </li>
+                <li><a class="footer__link" href="https://pasarpolis.io/news">Press Release</a></li>
+                <li><a class="footer__link" href="/claim">Submit Claim</a></li>
+                <li><a class="footer__link" href="/faq">FAQ</a></li>
+                <li><a class="footer__link" href="https://pasarpolis.io/dictionary">Insurance Dictionary</a></li>
+                <li><a class="footer__link" href="https://developers.pasarpolis.io/">Developer</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h4>OUR OFFICES</h4>
+            <p>Indonesia</p>
+            <p>One Pacific Place, 10th Floor unit D-H
+                SCBD Jl. Jend. Sudirman Kav 52-53
+                Jakarta Selatan 12190</p>
+            <p>
+                P : 021 5086 0658 (One Pacific)
+                P : 021 3111 8178 (One Pacific)
+                P : 021 5086 0657 (Tifa Building)
+                P : 021 3111 8177 (Tifa Building)
+                E : cs@pasarpolis.com
+
+                Customer Care
+                P : 021 5089 0580
+                W : 0877 0017 8000
+            </p>
+            <div class="container">
+                <a target="_blank" class="footer__link social-link" href="https://www.instagram.com/pasarpolis/"><img src="https://storage.googleapis.com/pp_img/website/pasarpolis/social-media/instagram.png"></a>
+                <a target="_blank" class="footer__link social-link" href="https://www.facebook.com/pasarpolis/"><img src="https://storage.googleapis.com/pp_img/website/pasarpolis/social-media/facebook.png"></a>
+                <a target="_blank" class="footer__link social-link" href="https://twitter.com/pasarpolis"><img src="https://storage.googleapis.com/pp_img/website/pasarpolis/social-media/twitter.png"></a>
+                <a target="_blank" class="footer__link social-link" href="https://www.youtube.com/channel/UC5wZUL4FVGQSfQYJ8cWQQ1Q"><img src="https://storage.googleapis.com/pp_img/website/pasarpolis/social-media/youtube.png"></a></div>
+        </div>
+    </div>
+</footer>
+
+</div>
+<script type="text/javascript" src="/assets/js/jquery1.js">
+</script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js">
+</script>
+</body>
+</html>

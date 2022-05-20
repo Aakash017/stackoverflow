@@ -1,0 +1,4 @@
+Django==3.2.12
+
+mysql-connector-python==8.0.28
+django-markupfield~=2.0.1

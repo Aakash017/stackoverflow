@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+<style>
+
+
+</style>
+
+<br>
+<div class="container-fluid">
+<div class="depname">
+    <div>
+        <h2>
+            {{ article.title }}
+        </h2>
+    </div>
+    <div>
+        <p>
+            {{ article.body }}
+        </p>
+    </div>
+    <div>
+        <div>
+            <img src="/media/{{article.author.profile_pic}}" alt="Trulli" width="200" height="200">
+            <h5>
+                By: {{ article.author }}
+                on {{ article.created_at|date:"j F, Y" }}
+            </h5>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container-fluid" style="margin-left:5px">
+<div class="row">
+    <div class="column">
+        <button class="button" onclick="upvote('{{request.session.user_email}}')">UpVote</button>
+    </div>
+</div>
+</div>
+
+
+<script>
+function upvote(user_email) {
+  var auth = user_email
+  if (! auth) {
+  alert ("login required ")
+  location.href="/login"
+  }
+  else {
+  alert ("thanks for voting...")
+  }
+}
+</script>
+
+{% endblock content %}

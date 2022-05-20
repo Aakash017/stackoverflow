@@ -142,7 +142,7 @@ form.example::after {
                     Suspendisse commodo elit eu est ultricies, non aliquet tellus rhoncus. Vivamus maximus lacus non erat
                     dictum, sit amet tempor lacus tincidunt.
                 </h4>
-                <button onclick="alert('Thanks for Asking')">Create Article</button>
+                <button onclick="create_article()">Create Article</button>
             </div>
             <div class="col-md-1 centre_section"></div>
             <div class="col-md-5 second_section">
@@ -159,7 +159,7 @@ form.example::after {
                     Suspendisse commodo elit eu est ultricies, non aliquet tellus rhoncus. Vivamus maximus lacus non erat
                     dictum, sit amet tempor lacus tincidunt.
                 </h4>
-                <button onclick="alert('Thanks for Asking')">Ask Question</button>
+                <button onclick="ask_question()">Ask Question</button>
             </div>
         </div>
     </div>
@@ -220,8 +220,19 @@ form.example::after {
         </div>
     </footer>
 </div>
+<script>
+    function ask_question(){
+    location.href ="/add_question"
+    }
+    function create_article(){
+    location.href ="/add_article"
+    }
+
+</script>
+
 
 <script type="text/javascript" src="/assets/js/jquery1.js">
+
 </script>
 <script type="text/javascript" src="/assets/js/bootstrap.min.js">
 </script>

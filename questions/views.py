@@ -11,7 +11,6 @@ from questions.models import Content, Comment
 from users.models import User
 
 
-
 def home(request):
     return render(request, template_name='base.html')
 
@@ -31,25 +30,45 @@ def logout(request):
 
 def articles_detail(request, pk):
     article = Content.objects.get(id=pk)
-    print("rs ", request.session)
-    print("rs ", request.session.get("user_email"))
-    print("rs ", request.session.get("user_id"))
-    return render(request, template_name='article_detail.html', context={"article": article})
+    comments = Comment.objects.filter(question_id=article.id)
+    con_obj = Content.objects.get(id=article.id)
+    return render(request, template_name='article_detail.html', context={"article": article,
+                                                                         'comments': comments,
+                                                                         'upvote': con_obj.upvote})
 
 
 def questions(request):
     return render(request, template_name='questions.html')
 
+
 def add_question(request):
     return render(request, template_name='add_question.html')
+
+
+def add_article(request):
+    return render(request, template_name='add_article.html')
+
 
 def add_question_backend(request):
     content_title = request.POST['title']
     content_description = request.POST['description']
-    content_tag = request.POST['tag']
-    Content.objects.create(title=content_title, body = content_description, tagging=content_tag )
-    return HttpResponse("Your question is submitted")
-    
+    content_tags = [request.POST['tags']]
+    content = Content.objects.create(title=content_title, body=content_description, tagging=content_tags,
+                                     is_question=True)
+    content.author_id = request.session.get("user_id")
+    content.save()
+    return redirect(f'/articles/question_detail/{content.id}/', content={"question": content})
+
+
+def add_article_backend(request):
+    content_title = request.POST['title']
+    content_description = request.POST['description']
+    content_tags = [request.POST['tags']]
+    content = Content.objects.create(title=content_title, body=content_description, tagging=content_tags, )
+    content.author_id = request.session.get("user_id")
+    content.save()
+    return redirect(f'/articles/articles_detail/{content.id}', content={"article": content})
+
 
 def articles_list(request):
     _articles = Content.objects.all()
@@ -66,13 +85,12 @@ def questions_list(request):
 def question_detail(request, pk):
     question = get_object_or_404(Content, pk=pk)
     comments = Comment.objects.filter(question_id=question.id)
-    con_obj = Content.objects.get(id = question.id)
+    con_obj = Content.objects.get(id=question.id)
     print("Comment values are", comments)
     print("content obj is", con_obj.id)
     print("content obj upvote is", con_obj.upvote)
-    return render(request, 'question_detail.html', 
-    context={'question': question, 'comments': comments, 'upvote': con_obj.upvote })
-
+    return render(request, 'question_detail.html',
+                  context={'question': question, 'comments': comments, 'upvote': con_obj.upvote})
 
 
 @login_required
@@ -107,9 +125,7 @@ def edit_question(request, pk):
 
 
 def search(request):
-    print("request :", request)
     search_k = request.POST["search"]
-    print(search_k)
     results = Content.objects.filter(title__icontains=search_k)
     return render(request, template_name='search.html', context={'questions': results})
 
@@ -125,10 +141,9 @@ def post_comment(request, pk):
     print(user)
     fields = Comment._meta.get_fields()
     print(fields)
-    a = Comment(question_id = question.id, comment = comment_content, author_id = user)
+    a = Comment(question_id=question.id, comment=comment_content, author_id=user)
     a.save()
-    return HttpResponse('Your post is submitted')
-
+    return redirect(f'/articles/question_detail/{pk}/', content={"question": question})
 
 
 @login_required
@@ -141,38 +156,40 @@ def upvote_question(request, pk):
     question = get_object_or_404(Content, pk=pk)
     print("question is", question, type(question))
     if user_id != question.author:
-        question.upvote = question.upvote+1
+        question.upvote = question.upvote + 1
         question.save()
         # question.update(upvote=question.upvote+1)
         # user.update(points=user.points+1)
-        user.points = user.points+1
+        user.points = user.points + 1
         user.save()
     comments = Comment.objects.filter(question_id=question.id)
-    con_obj = Content.objects.get(id = question.id)
+    con_obj = Content.objects.get(id=question.id)
 
     # print("Comment values are", comments)
-    return render(request, 'question_detail.html', 
-    context={'question': question, 'comments': comments, 'upvote': con_obj.upvote })
+    return render(request, 'question_detail.html',
+                  context={'question': question, 'comments': comments, 'upvote': con_obj.upvote})
     # question_detail(pk = pk)
     # return render(request, template_name='question_detail.html', context={"question": question})
 
 
-
 @login_required
-def upvote_comment(request, pk):
+def upvote_comment(request, pk, ck):
     user_id = request.session["user_id"]
-    User = get_object_or_404(User, pk=user_id)
-    comment = get_object_or_404(Comment, pk=pk)
-    question = get_object_or_404(Content, pk=comment.question)
-    if user_id != comment.author:
-        # comment.update(upvote=comment.upvote + 1)
-        comment.upvote = comment.upvote+1
+    user = get_object_or_404(User, pk=user_id)
+    comment = get_object_or_404(Comment, pk=ck)
+    question = get_object_or_404(Content, pk=pk)
+    if user_id != comment.author.id:
+        comment.upvote = comment.upvote + 1
         comment.save()
         # User.update(points=User.points + 1)
-        User.points = User.points+1
-        User.save()
+        user.points += 1
+        user.save()
     comments = Comment.objects.filter(question_id=question.id)
-    # print("Comment values are", comments)
-    return render(request, 'question_detail.html', 
-    context={'question': question, 'comments': comments })
+    if question.is_question:
+        return redirect(f'/articles/question_detail/{question.id}', context={'question': question, 'comments': comments,
+                                                                             'upvote': question.upvote})
+    else:
+        return redirect(f'/articles/article_detail/{question.id}', context={'article': question, 'comments': comments,
+                                                                            'upvote': question.upvote})
+
     # return render(request, template_name='article_detail.html', context={"article": question})

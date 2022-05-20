@@ -1,16 +1,15 @@
 .depname {
-    background-color: blanchedalmond;
-    margin-left: 100px;
-    margin-right: 100px;
-    border: None;
+
+    background-color: rgba(230, 169, 15, 0.599);
+    border-radius: 10px;
+    text-align: justify;
 }
 
-.comment_list {
-    background-color: blanchedalmond;
-    margin-left: 100px;
-    margin-right: 100px;
-    border: None;
+
+.question_title{
+    text-align: center;
 }
+
 .question_body{
     /* background-color: red; */
     margin: auto;
@@ -24,8 +23,35 @@
 }
 
 .question_author{
-    height:50px;
-    width: 400px;
     /* background-color: red; */
-    margin-left:800px;
+    text-align:right;
+}
+
+.comment_list {
+    background-color:rgba(230, 169, 15, 0.599);
+    margin:0px 100px 100px 100px;
+    border: None;
+    padding: 20px 20px 20px 20px;
+}
+
+.comment_list_title{
+    text-align: center;
+}
+
+.author_by{
+    text-align: right;
+}
+
+.post_your_comment{
+    /* background-color: red; */
+    padding: 10px 40px 0px 40px;
+}
+.post_your_comment textarea{
+    /* background-color: red; */
+    width: 100%;
+}
+.comment_title{
+    text-align: center;
+    /* padding: 10px 40px 10px 40px; */
+    /* background-color: pink; */
 }

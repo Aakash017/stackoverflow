@@ -143,7 +143,10 @@ def post_comment(request, pk):
     print(fields)
     a = Comment(question_id=question.id, comment=comment_content, author_id=user)
     a.save()
-    return redirect(f'/articles/question_detail/{pk}/', content={"question": question})
+    if question.is_question:
+        return redirect(f'/articles/question_detail/{pk}/', content={"question": question})
+    else:
+        return redirect(f'/articles/articles_detail/{pk}', content={"article": question})
 
 
 
@@ -172,7 +175,7 @@ def upvote_question(request, pk):
         return render(request, 'question_detail.html',
                   context={'question': question, 'comments': comments, 'upvote': con_obj.upvote})
     else:
-        return render(request, 'article_detail.html',
+        return render(request, 'articles_detail.html',
                   context={'article': question, 'comments': comments, 'upvote': con_obj.upvote})
     # question_detail(pk = pk)
     # return render(request, template_name='question_detail.html', context={"question": question})

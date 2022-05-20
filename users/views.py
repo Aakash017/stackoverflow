@@ -39,4 +39,7 @@ def list_users(request):
         content["date_joined"] = user.date_joined
         content["score"] = user.points
         users_list.append(content)
-    return render(request, template_name='users_list.html', context={'users': users_list})
+    newlist = sorted(users_list, key=lambda d: d['score'], reverse=True) 
+
+
+    return render(request, template_name='users_list.html', context={'users': newlist})

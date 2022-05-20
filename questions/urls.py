@@ -11,4 +11,8 @@ urlpatterns = [
     path('question_detail/<pk>/', views.question_detail, name='question_detail'),
     path('edit_question/<pk>', views.edit_question, name="edit_question"),
     path('search/', views.search, name="search"),
+    path('add_question/', views.add_question, name='add_question'),
+    path('question_detail/<pk>/post_comment/', views.post_comment, name="post_comment"),
+    path('question_detail/<pk>/upvote_question/', views.upvote_question, name="upvote_question"),
+    path('question_detail/<pk>/upvote_comment/', views.upvote_comment, name="upvote_comment"),
 ]

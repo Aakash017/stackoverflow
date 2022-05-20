@@ -1,0 +1,31 @@
+.depname {
+    background-color: blanchedalmond;
+    margin-left: 100px;
+    margin-right: 100px;
+    border: None;
+}
+
+.comment_list {
+    background-color: blanchedalmond;
+    margin-left: 100px;
+    margin-right: 100px;
+    border: None;
+}
+.question_body{
+    /* background-color: red; */
+    margin: auto;
+    padding: 20px 40px 20px 40px ;
+    text-align: justify;
+
+}
+
+.logo_box{
+    margin: auto;
+}
+
+.question_author{
+    height:50px;
+    width: 400px;
+    /* background-color: red; */
+    margin-left:800px;
+}

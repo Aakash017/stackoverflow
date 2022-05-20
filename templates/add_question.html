@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<head>
+
+<script>
+function fun()
+{
+	var question = document.getElementById("question").value;
+    var description = documnent.getElementById("description").value;
+    var tag = documnent.getElementById("tag").value;
+
+	if(!question)
+	{
+		alert("all fields are required");
+	}
+
+}
+</script>
+<!-- <link href="/templates/add_question.css" rel="stylesheet"> -->
+<link type="text/css" href="/assets/css/add_question.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+	<div class=promote>
+
+		<form class="add_question" method = "POST" action="http://127.0.0.1:8000/add_question_backend/">
+            {% csrf_token %}
+			<b>Question</b><br>
+				<input type= "text" name="title" id="question" placeholder="Question title"><br><br>
+			<b>Description</b>	<br>
+				<textarea name="description" id="description" placeholder="Description of the question"></textarea><br><br>
+            <b>Tags:</b>	<br>
+                <input type= "tag" name="tag" id="tag" placeholder="Tags related to question"></textarea><br><br>
+            <b>Image Link:</b>	<br>
+				<input type= "text" name="imagelink_of_event" id="imagelink" placeholder="Imagelink of Event"><br><br>
+				<input type= "submit" onclick="fun();" name= "submit"><br><br>
+		</form>
+
+	</div>
+
+</body>
+
+{% endblock content %}

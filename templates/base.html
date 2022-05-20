@@ -100,9 +100,10 @@ form.example::after {
                 <li><a href="/articles">ARTICLES</a></li>
                 <li><a href="/articles/questions_list">QUESTIONS</a></li>
                 <li><a href="/users/">Top Users</a></li>
+                <li><a href="/add_question">ADD QUESTION</a></li>
                 {% if request.session.user_email %}
                 <li style="margin-left:450px"><a href="/logout">LOGOUT</a></li>
-                 <li><img src="{{request.session.user_profile_pic}}" alt="Avatar" width="50" height="50"></li>
+                    <li><img src="{{request.session.user_profile_pic}}" alt="Avatar" width="50" height="50"></li>
                 {% else %}
                 <li style="margin-left:500px"><a href="/login">LOGIN</a></li>
                 {% endif %}

@@ -18,7 +18,9 @@ def login(request):
     if user is not None:
         # login(request, user)
         request.session["user_email"] = user.email
-        request.session["user_profile_pic"] = user.profile_pic.url
+        request.session["user_id"] = user.id
+        if user.profile_pic:
+            request.session["user_profile_pic"] = user.profile_pic.url
         return redirect('/articles/')
     else:
         return redirect('/login/')

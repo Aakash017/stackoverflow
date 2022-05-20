@@ -155,19 +155,25 @@ def upvote_question(request, pk):
     print("user is", user, type(user))
     question = get_object_or_404(Content, pk=pk)
     print("question is", question, type(question))
+    user_upvote_increase = User.objects.get(id = question.author.id)
+    print("User to upvote is", user_upvote_increase.id)
     if user_id != question.author:
         question.upvote = question.upvote + 1
         question.save()
         # question.update(upvote=question.upvote+1)
         # user.update(points=user.points+1)
-        user.points = user.points + 1
-        user.save()
+        user_upvote_increase.points = user_upvote_increase.points + 1
+        user_upvote_increase.save()
     comments = Comment.objects.filter(question_id=question.id)
     con_obj = Content.objects.get(id=question.id)
 
     # print("Comment values are", comments)
-    return render(request, 'question_detail.html',
+    if question.is_question:
+        return render(request, 'question_detail.html',
                   context={'question': question, 'comments': comments, 'upvote': con_obj.upvote})
+    else:
+        return render(request, 'article_detail.html',
+                  context={'article': question, 'comments': comments, 'upvote': con_obj.upvote})
     # question_detail(pk = pk)
     # return render(request, template_name='question_detail.html', context={"question": question})
 
@@ -177,12 +183,15 @@ def upvote_comment(request, pk, ck):
     user = get_object_or_404(User, pk=user_id)
     comment = get_object_or_404(Comment, pk=ck)
     question = get_object_or_404(Content, pk=pk)
+    user_upvote_increase = User.objects.get(id = comment.author.id)
     if user_id != comment.author.id:
         comment.upvote = comment.upvote + 1
         comment.save()
         # User.update(points=User.points + 1)
-        user.points += 1
-        user.save()
+        
+        user_upvote_increase.points += 1
+
+        user_upvote_increase.save()
     comments = Comment.objects.filter(question_id=question.id)
     print('hey there')
     if question.is_question:

@@ -29,5 +29,10 @@
 } */
 
 .logo_box{
-    background-color: red;
+    /* background-color: red; */
+}
+.count{
+    font-size: 10;
+    /* background-color: blue; */
+    font-weight: bold;
 }

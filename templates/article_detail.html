@@ -32,8 +32,8 @@
         <div class="logo_box">
             <form method="POST" action="/articles/question_detail/{{article.id}}/upvote_question/">
                 {% csrf_token %}
-                <p>{{upvote}}</p>
-                <button type="submit"> <img src="/assets/images/article.png" height ="80" width="100" />UPVOTE</button>
+                <h2 class="count">{{upvote}}</h2>
+                <button type="submit"> <img src="/assets/images/up.png" height ="70" width="70" /></button>
             </form>
         </div>
     </div>

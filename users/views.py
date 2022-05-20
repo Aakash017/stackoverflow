@@ -37,5 +37,6 @@ def list_users(request):
         content["name"] = user.get_full_name()
         content["pic"] = user.profile_pic
         content["date_joined"] = user.date_joined
+        content["score"] = user.points
         users_list.append(content)
     return render(request, template_name='users_list.html', context={'users': users_list})

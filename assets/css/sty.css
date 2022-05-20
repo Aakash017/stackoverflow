@@ -1,27 +1,39 @@
+.main_section_body{
+  padding: 40px 0 40px 0; 
+  background-color:#261e1e4a;
+}
+
 .top-bar{
-
-background-color:#f4f4f4;
-display:block;
-
+  background-color:rgba(0, 0, 0, 0.8);
+  display:block;
+  padding-top:20px;
+  padding-bottom: 20px;
 }
-.header-area{
-padding: 20px 0px;
 
 
-
-
+.search_bar{
+  margin-left: 100px;
 }
+
 .top-bar a{
-color:#222;
+  color:rgba(250, 250, 250, 0.961);
+  font-family: Lato;
 }
+
+.nav-bar{
+  background-color:rgba(0, 0, 0, 0.8);
+  padding-bottom: 50px;
+
+}
+
 
 .sticky-footer{
-position:relative;
+  position:relative;
 	bottom:0;
-	width:100%;
-	height:100%;
-	background-color:#f4f4f4;
-	margin-top:20px;
+  padding:20px;
+  margin-left:0px;
+	background-color:black;
+  color: #eeeeeeb0;
 }
 
 
@@ -32,8 +44,6 @@ width:120px;
 }
 
 .middle{
-
-
 min-height:500px;
 background-color:#f4f4f4;
 }
@@ -147,6 +157,72 @@ input[readonly] {
 
 
 
+.first_section{
+  background-color:	rgba(230, 169, 15, 0.599); 
+  text-align: justify;
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+  margin: 40px 0px 40px 40px; 
+
+}
+
+.centre_section{
+  background-color: black;
+  text-align: justify;
+}
+
+.second_section{
+  background-color:	rgba(230, 169, 15, 0.599); 
+  border-radius: 20px;
+  text-align: justify;
+  padding: 20px 20px 20px 20px;
+  margin: 40px 0px 40px 0px; 
+
+}
+
+.navbar-nav{
+  /* background-color: red; */
+  padding-left: 100px;
+  height:60px;
+  border-radius:20px;
+	width:100%;
+}
+
+.navbar-nav ul
+{
+	/*
+	height:60px;
+	background-color:red;
+	border:red solid 1px;
+	border-radius:20px;   */      /* uncomment these to see nav ul */
+	
+	height:60px;
+	list-style:none;		/* TO REMOVE BULLETIN SYMBOL FROM FRONT OF THE LIST ITEMS   */
+	margin:0px 0px 0px 230px;
+	
+}
+
+.navbar-nav li
+{
+	border:white solid 0px;
+	border-radius:15px;
+	/* background-color:rgba(90,49,80,0.2); */
+	background-color:rgba(0, 0, 0, 0.818);
+	height:60px;
+	float:left;
+	padding:18px;
+	cursor:pointer;
+}
 
 
-
+.navbar-nav a
+{	
+	color:rgba(216, 155, 0, 0.898);
+	font-weight:bold;
+	/* font-style:italic; */
+	font-family:Lato;
+	font-size:18px;
+	font-weight:90;
+	display:block;
+	text-decoration:none;  	/* TO REMOVE THE UNDERLINE UNDER THE ANCHOR <a> TAB */
+}

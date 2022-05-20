@@ -207,7 +207,7 @@ input[readonly] {
 	border:white solid 0px;
 	border-radius:15px;
 	/* background-color:rgba(90,49,80,0.2); */
-	background-color:rgba(0, 0, 0, 0.818);
+	background-color:#e1e1e128;
 	height:60px;
 	float:left;
 	padding:18px;

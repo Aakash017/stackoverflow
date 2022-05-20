@@ -3,14 +3,15 @@
 
 
 <style>
-
-
 </style>
+<head>
+    <link type="text/css" href="/assets/css/article_detail.css" rel="stylesheet"/>
+</head>
 
 <br>
 <div class="container-fluid">
     <div class="depname">
-        <div>
+        <div class ='article_title'>
             <h2>
                 {{ article.title }}
             </h2>
@@ -21,7 +22,7 @@
             </p>
         </div>
         <div>
-            <div>
+            <div class ='article_by'>
                 <h5>
                     By: {{ article.author }}
                     on {{ article.created_at|date:"j F, Y" }}
@@ -32,7 +33,7 @@
             <form method="POST" action="/articles/question_detail/{{article.id}}/upvote_question/">
                 {% csrf_token %}
                 <p>{{upvote}}</p>
-                <button type="submit"> Click here</button>
+                <button type="submit"> <img src="/assets/images/article.png" height ="80" width="100" />UPVOTE</button>
             </form>
         </div>
     </div>

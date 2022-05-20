@@ -165,6 +165,10 @@ input[readonly] {
   margin: 40px 0px 40px 40px; 
 
 }
+.first_section button{
+  margin-left: 200px;
+  font-weight:bold;
+}
 
 .centre_section{
   background-color: black;
@@ -177,8 +181,14 @@ input[readonly] {
   text-align: justify;
   padding: 20px 20px 20px 20px;
   margin: 40px 0px 40px 0px; 
-
 }
+
+.second_section button{
+  margin-left: 200px;
+  font-weight:bold;
+  
+}
+
 
 .navbar-nav{
   /* background-color: red; */

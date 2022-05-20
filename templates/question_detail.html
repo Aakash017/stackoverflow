@@ -1,85 +1,93 @@
 {% extends 'base.html'%}
 {% block content %}
 <br>
-<div class="card my-6 border-info">
+<div class="container-fluid">
     <div class="depname">
-        <div class = "question_title">
+        <div class="question_title">
             <h2>
                 {{ question.title }}
             </h2>
         </div>
-        <div class = "question_body">
+        <div class="question_body">
             <h4>
-            {{ question.body }}
+                {{ question.body }}
             </h4>
         </div>
-        <div class = "question_author">
+        <div class="question_author">
             By: {{ question.author }}
             on {{ question.created_at|date:"j F, Y" }}
         </div>
         <div class="logo_box">
-            <form method="POST" action = "http://127.0.0.1:8000/question_detail/4/upvote_question/">
-                {% csrf_token %} 
+            <form method="POST" action="/question_detail/{{question.id}}/upvote_question/">
+                {% csrf_token %}
                 <p>{{upvote}}</p>
-                <button type="submit" > Click here </button>
+                <button type="submit"> Click here</button>
             </form>
         </div>
     </div>
 </div>
 
-<head>
-    <link type="text/css" href="/assets/css/comment.css" rel="stylesheet"/>
-    <link type="text/css" href="/assets/css/question_detail.css" rel="stylesheet"/>
-</head>
+
 <script>
-    function call_comment_api()
+    function call_comment_api(user_id)
     {
-        var com = document.getElementById("comment").value;
-     
-        if(!com)
+        var user_id = user_id;
+        if(!user_id)
         {
-            alert("all fields are required");
+            alert("login required");
+            location.href('/login')
         }
-        alert("Your post is submitted");
     }
+
+
+
+
 </script>
-
-
-
-<div class=promote>
-    <form method="POST" action = "post_comment/">
-        {% csrf_token %} 
-      <!-- {{ comment_form.as_p }} -->
-      <b>Comment:</b>	<br>
-	    <textarea name="comment" id="comment" placeholder="Comment for the content"></textarea><br><br>
-        <input type= "submit"  name= "post_comment" onclick="call_comment_api();" value="POST">
-    
-</form>
-
-</div>
-
 <br>
 
-{%  for comment in comments %}
-<br>
-<div class="card my-6 border-info">
+<div class="container-fluid">
+    <div>
+        <form method="POST" action="/articles/question_detail/{{question.id}}/post_comment/">
+            {% csrf_token %}
+            <!-- {{ comment_form.as_p }} -->
+            <b>Comment:</b> <br>
+            <textarea name="comment" required id="comment" placeholder="Comment for the content"></textarea><br>
+            <input type="submit" name="post_comment" onclick="call_comment_api('{{request.session.user_id}}');"
+                   value="POST">
+
+        </form>
+
+    </div>
+
+    <br>
+
+
+    <br>
     <div class="comment_list">
+        {% for comment in comments %}
+
         <div>
-
-
-        <hr>
-        {% if comment.comment|wordcount <= 30 %}
-        <p class="card-text">{{ comment.comment }}</p>
-        {% else %}
-            {{ comment.comment|truncatewords:30 }}
-            <a href="{% url 'articles:question_detail' pk=question.pk %}" class="card-link">Read More</a>
-        {% endif %}
-    </div>
-        <div>By: {{ comment.author_id }}
-                    - {{ comment.created_at|date:"j F, Y" }}</div>
+            <hr>
+            {% if comment.comment|wordcount <= 30 %}
+            <h4>{{ comment.comment }}</h4>
+            {% else %}
+            <h4>{{ comment.comment|truncatewords:30 }}</h4>
+            {% endif %}
+        </div>
+        <div>By: {{ comment.author.email }}
+            on {{ comment.created_at|date:"j F, Y" }}
+        </div>
+        <div class="logo_box">
+            <form method="POST" action="/question_detail/{{question.id}}/upvote_comment/{{comment.id}}/">
+                {% csrf_token %}
+                <p>{{comment.upvote}}</p>
+                <button type="submit"> Click here</button>
+            </form>
+        </div>
+        {% endfor %}
     </div>
 </div>
-{% endfor %}
+
 
 {% endblock content %}
 

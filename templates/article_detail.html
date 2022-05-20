@@ -9,49 +9,94 @@
 
 <br>
 <div class="container-fluid">
-<div class="depname">
-    <div>
-        <h2>
-            {{ article.title }}
-        </h2>
-    </div>
-    <div>
-        <p>
-            {{ article.body }}
-        </p>
-    </div>
-    <div>
+    <div class="depname">
         <div>
-            <img src="/media/{{article.author.profile_pic}}" alt="Trulli" width="200" height="200">
-            <h5>
-                By: {{ article.author }}
-                on {{ article.created_at|date:"j F, Y" }}
-            </h5>
+            <h2>
+                {{ article.title }}
+            </h2>
+        </div>
+        <div>
+            <p>
+                {{ article.body }}
+            </p>
+        </div>
+        <div>
+            <div>
+                <h5>
+                    By: {{ article.author }}
+                    on {{ article.created_at|date:"j F, Y" }}
+                </h5>
+            </div>
+        </div>
+        <div class="logo_box">
+            <form method="POST" action="/articles/question_detail/{{article.id}}/upvote_question/">
+                {% csrf_token %}
+                <p>{{upvote}}</p>
+                <button type="submit"> Click here</button>
+            </form>
         </div>
     </div>
-</div>
-</div>
-
-<div class="container-fluid" style="margin-left:5px">
-<div class="row">
-    <div class="column">
-        <button class="button" onclick="upvote('{{request.session.user_email}}')">UpVote</button>
-    </div>
-</div>
 </div>
 
 
 <script>
-function upvote(user_email) {
-  var auth = user_email
-  if (! auth) {
-  alert ("login required ")
-  location.href="/login"
-  }
-  else {
-  alert ("thanks for voting...")
-  }
-}
+    function call_comment_api(user_id)
+    {
+        var user_id = user_id;
+        if(!user_id)
+        {
+            alert("login required");
+            location.href('/login')
+        }
+    }
+
+
+
 </script>
+<br>
+
+<div class="container-fluid">
+    <div>
+        <form method="POST" action="/articles/question_detail/{{article.id}}/post_comment/">
+            {% csrf_token %}
+            <!-- {{ comment_form.as_p }} -->
+            <b>Comment:</b> <br>
+            <textarea name="comment" required id="comment" placeholder="Comment for the content"></textarea><br>
+            <input type="submit" name="post_comment" onclick="call_comment_api('{{request.session.user_id}}');"
+                   value="POST">
+
+        </form>
+
+    </div>
+
+    <br>
+
+
+    <br>
+    <div class="comment_list">
+        {% for comment in comments %}
+
+        <div>
+            <hr>
+            {% if comment.comment|wordcount <= 30 %}
+            <h4>{{ comment.comment }}</h4>
+            {% else %}
+            <h4>{{ comment.comment|truncatewords:30 }}</h4>
+            {% endif %}
+        </div>
+        <div>By: {{ comment.author.email }}
+            on {{ comment.created_at|date:"j F, Y" }}
+        </div>
+        <div class="logo_box">
+            <form method="POST" action="/question_detail/{{article.id}}/upvote_comment/{{comment.id}}/">
+                {% csrf_token %}
+                <p>{{comment.upvote}}</p>
+                <button type="submit"> Click here</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 
 {% endblock content %}

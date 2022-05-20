@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'pasarpolis_stackoverflow.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'pp_stackoverflow',
+        'NAME': 'pp_stackoverflow_1',
         'USER': 'root',
         'PASSWORD': 'root@123',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on

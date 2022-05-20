@@ -71,7 +71,7 @@ def add_article_backend(request):
 
 
 def articles_list(request):
-    _articles = Content.objects.all()
+    _articles = Content.objects.filter(is_question=False)
     print("logged in user email", request.session.get("user_email"))
     return render(request, template_name='articles.html', context={'articles': _articles})
 
@@ -146,7 +146,7 @@ def post_comment(request, pk):
     return redirect(f'/articles/question_detail/{pk}/', content={"question": question})
 
 
-@login_required
+
 def upvote_question(request, pk):
     print('inside upvote_question api')
     user_id = request.session["user_id"]
@@ -172,7 +172,6 @@ def upvote_question(request, pk):
     # return render(request, template_name='question_detail.html', context={"question": question})
 
 
-@login_required
 def upvote_comment(request, pk, ck):
     user_id = request.session["user_id"]
     user = get_object_or_404(User, pk=user_id)
@@ -185,11 +184,12 @@ def upvote_comment(request, pk, ck):
         user.points += 1
         user.save()
     comments = Comment.objects.filter(question_id=question.id)
+    print('hey there')
     if question.is_question:
         return redirect(f'/articles/question_detail/{question.id}', context={'question': question, 'comments': comments,
                                                                              'upvote': question.upvote})
     else:
-        return redirect(f'/articles/article_detail/{question.id}', context={'article': question, 'comments': comments,
+        return redirect(f'/articles/articles_detail/{question.id}', context={'article': question, 'comments': comments,
                                                                             'upvote': question.upvote})
 
     # return render(request, template_name='article_detail.html', context={"article": question})

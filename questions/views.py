@@ -188,6 +188,7 @@ def upvote_comment(request, pk, ck):
     question = get_object_or_404(Content, pk=pk)
     user_upvote_increase = User.objects.get(id = comment.author.id)
     if user_id != comment.author.id:
+        # print('User comment upvote inside else if', comment.upvote)
         comment.upvote = comment.upvote + 1
         comment.save()
         # User.update(points=User.points + 1)
@@ -196,7 +197,7 @@ def upvote_comment(request, pk, ck):
 
         user_upvote_increase.save()
     comments = Comment.objects.filter(question_id=question.id)
-    print('hey there')
+    # print('User comment upvote is', comment.upvote)
     if question.is_question:
         return redirect(f'/articles/question_detail/{question.id}', context={'question': question, 'comments': comments,
                                                                              'upvote': question.upvote})

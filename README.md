@@ -1,5 +1,5 @@
-# Stackoverflow
-## This project is clone of stackoverflow where a user can post articles and questions also can like , upvote and answers or comments on other articles/questions.
+# ASKQuestion
+## This is platform where a user can post articles and questions also can like , upvote and answers or comments on other articles/questions.
 
 # Some of the features 
 ## login user and maintain session

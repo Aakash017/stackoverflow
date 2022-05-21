@@ -27,15 +27,15 @@ create new database and update database sesstings in sesstings.py
 create database <db_name>;
 ```
 
-# Edit
+# Edit Settings.py
 
 ```python
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'pp_stackoverflow_1',
-        'USER': 'root',
-        'PASSWORD': 'root@123',
+        'NAME': 'db_name',
+        'USER': 'user',
+        'PASSWORD': 'password',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }

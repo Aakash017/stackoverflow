@@ -13,8 +13,18 @@ Steps:
 git clone https://github.com/Aakash017/stackoverflow.git
 
 create new virtaulenv and activate the same
+```python
+python3.7 -m virtualenv <env_name>
+```
+
+```python
+source <env_name>/bin/activate/
+```
 
 create new database and update database sesstings in sesstings.py
+
+``` create database <db_name>;
+```
 
 Now you are good to go
 

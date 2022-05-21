@@ -23,12 +23,28 @@ source <env_name>/bin/activate/
 
 create new database and update database sesstings in sesstings.py
 
-``` create database <db_name>;
+```sql
+create database <db_name>;
 ```
 
-Now you are good to go
+# Edit
 
-Start your server
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'pp_stackoverflow_1',
+        'USER': 'root',
+        'PASSWORD': 'root@123',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    }
+}
+```
+
+## Now you are good to go
+
+# Start your server
 
 ```python
 python manage.py runserver

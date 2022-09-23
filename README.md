@@ -2,8 +2,17 @@
 ## This is platform where a user can post articles and questions also can like , upvote and answers or comments on other articles/questions.
 
 # Some of the features 
-## login user and maintain session
+
+## Login user and maintain session
+<img width="1421" alt="Screenshot 2022-09-23 at 4 45 51 PM" src="https://user-images.githubusercontent.com/40654974/191949503-1587e2a0-0d06-4e29-9e75-7b34af19dc3e.png">
+
 ## Create a article/question
+<img width="1415" alt="Screenshot 2022-09-23 at 4 46 16 PM" src="https://user-images.githubusercontent.com/40654974/191949523-458ee598-72de-445a-8785-24531f968b2a.png">
+
+## Upvote an article/question
+<img width="1431" alt="Screenshot 2022-09-23 at 4 46 40 PM" src="https://user-images.githubusercontent.com/40654974/191949529-094cffe6-a6dd-4ad7-91c6-e4919a881c6b.png">
+
+
 ## Answer on article/question
 ## Upvote an article/question
 ## Upvote Comment on article/question
@@ -41,6 +50,7 @@ DATABASES = {
     }
 }
 ```
+
 
 ## Now you are good to go
 

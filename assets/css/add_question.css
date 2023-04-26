@@ -1,0 +1,51 @@
+body
+{
+	background-color:rgba(135,206,235,0.5);
+}
+
+
+.promote
+{
+	margin:auto;
+    margin-left:50px;
+	margin-bottom:50px;
+	margin-top:50px;
+	height:600px;
+	width:600px;
+	background-color:rgba(0,0,0,0.4);
+	text-align:left;
+	padding-top:10px;
+	padding-left:10px;	
+	
+}
+
+
+
+#description
+{
+	width:100px;
+	height:200px;
+}
+
+
+.promote input							/* 1st method to edit the input text place */
+{
+	padding:10px;
+	height:40px;
+	width:600px;
+	border:white solid 2px;
+}
+
+.promote input[type="submit"]					/* 2nd method to edit the input text place */
+{
+    margin: auto;
+	font-weight:bold;
+	color:white;
+	background-color:black;
+	height:10px;
+	width:100px;
+	border:black solid 0.25px;	
+	/* margin-top: 40px;
+	margin-left:100px; */
+	padding-bottom:30px;
+}

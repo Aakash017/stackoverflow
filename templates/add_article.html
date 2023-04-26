@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+<script>
+function fun()
+{
+	var question = document.getElementById("question").value;
+    var description = documnent.getElementById("description").value;
+    var tag = documnent.getElementById("tag").value;
+
+	if(!question)
+	{
+		alert("all fields are required");
+	}
+
+}
+
+
+
+</script>
+<!-- <link href="/templates/add_question.css" rel="stylesheet"> -->
+<!--<link type="text/css" href="/assets/css/add_question.css" rel="stylesheet"/>-->
+
+<div class="container-fluid">
+    <div class="row middle">
+        <div class="col-md-12">
+            <form method="post" role="form" action="/add_article_backend/">
+				{% csrf_token %}
+                <div class="form-group">
+                    <input type="text" required class="form-control" style="height:50px" name="title" placeholder="Title"/>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control bcontent" style="height:400px" required name="description"
+                              placeholder="Description"></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control bcontent" name="tags" required placeholder="Tags"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="Submit" value="Publish" class="btn btn-primary form-control"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

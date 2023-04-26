@@ -2,24 +2,30 @@
 {% block content %}
 {%  for article in articles %}
 <br>
+<head>
+    <link type="text/css" href="/assets/css/articles.css" rel="stylesheet"/>
+</head>
+
 <div class="container-fluid">
-    <div class="depname">
-        <div>
-
-            <a class="text-info card-title responsive-font-size h5"
-            href="{% url 'articles:articles_detail' pk=article.pk %}">
-            {{ article.title }}</a>
-
-        <hr>
-        {% if article.body|wordcount <= 30 %}
-        <p class="card-text">{{ article.body }}</p>
-        {% else %}
-            {{ article.body|truncatewords:30 }}
-            <a href="{% url 'articles:articles_detail' pk=article.pk %}" class="card-link">Read More</a>
-        {% endif %}
-    </div>
-        <div>By: {{ article.author }}
-                    - {{ article.created_at|date:"j F, Y" }}</div>
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="depname">
+                <div class="article_title">
+                    <a class="text-info card-title responsive-font-size h5"
+                    href="{% url 'articles:articles_detail' pk=article.pk %}">
+                    {{ article.title }}</a>
+                <hr>
+                {% if article.body|wordcount <= 30 %}
+                <p class="card-text">{{ article.body }}</p>
+                {% else %}
+                    {{ article.body|truncatewords:30 }}
+                    <a href="{% url 'articles:articles_detail' pk=article.pk %}" class="card-link">Read More</a>
+                {% endif %}
+                </div>
+                <div>By: {{ article.author }}
+                            - {{ article.created_at|date:"j F, Y" }}</div>
+                </div>
+            </div>
     </div>
 </div>
 {% endfor %}

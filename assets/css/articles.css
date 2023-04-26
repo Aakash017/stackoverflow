@@ -1,0 +1,17 @@
+.depname{
+    background-color: rgba(230, 169, 15, 0.599);
+    border:None;
+    border-radius: 10px;
+    margin-left:150px;
+    margin-bottom: 10px;
+}
+
+.article_title{
+    margin-top:10px;
+}
+
+
+.article_title a{
+    font-size:20px;
+    color: rgba(16, 131, 219, 0.935); 
+}

@@ -25,5 +25,11 @@ urlpatterns = [
     path('login/', views.login),
     path('logout/', views.logout),
     path('articles/', include('questions.urls'), name='articles'),
-    path('users/', include('users.urls'))
+    path('users/', include('users.urls')),
+    path('add_question/', views.add_question),
+    path('add_article/', views.add_article),
+    path('add_article_backend/', views.add_article_backend),
+    path('add_question_backend/', views.add_question_backend),
+    path('question_detail/<pk>/upvote_question/', views.upvote_question, name="upvote_question"),
+    path('question_detail/<pk>/upvote_comment/<ck>/', views.upvote_comment, name="upvote_comment")
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

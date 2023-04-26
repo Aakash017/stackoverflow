@@ -6,6 +6,8 @@ from django.db import models
 class User(AbstractUser):
     email = models.EmailField(unique=True, max_length=250)
     profile_pic = models.FileField(upload_to='documents/', null=True)
+    points = models.IntegerField(default=0,null=True)
+
 
     def __str__(self):
         return self.email
@@ -15,3 +17,4 @@ class User(AbstractUser):
     #     if not self.username:
     #         self.username = self.email
     #     return super().save()
+
